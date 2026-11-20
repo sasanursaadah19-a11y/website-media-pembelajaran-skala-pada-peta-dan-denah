@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Petualangan Skala: Peta &amp; Denah</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&family=Nunito:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <!-- Style kustom -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Script utama (dimuat setelah HTML selesai dibaca) -->
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+
+    <!-- Background foto (3 gambar, ganti otomatis saat scroll) -->
+    <div id="bg" aria-hidden="true">
+        <div class="on" style="background-image:url('assets/bg-1.jpg')"></div>
+        <div style="background-image:url('assets/bg-2.jpg')"></div>
+        <div style="background-image:url('assets/bg-3.jpg')"></div>
+    </div>
+
+    <!-- Blob warna dekoratif -->
+    <div class="blob b1"></div>
+    <div class="blob b2"></div>
+
+    <!-- Navbar -->
+    <nav>
+        <b>🗺️ Petualangan Skala</b>
+        <a href="#materi">Materi</a>
+        <a href="#alat">Simulasi</a>
+        <a href="#quiz">Quiz</a>
+        <button class="btn alt" id="mus" aria-pressed="false">🎵 Musik: mati</button>
+    </nav>
+
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="home" data-bg="0">
+        <span class="pill">✨ Belajar Matematika SMP</span>
+        <h1>Petualangan <em>Skala</em><br>Peta &amp; Denah</h1>
+        <div class="fl" aria-hidden="true">
+            <span>🗺️</span><span>📐</span><span>🧭</span>
+        </div>
+        <p>Belajar skala langkah demi langkah, sesuai kecepatanmu: ada rumus, panduan mengubah satuan, ilustrasi, simulasi, dan quiz seru!</p>
+        <div class="row">
+            <a href="#materi"><button class="btn">Mulai Belajar</button></a>
+            <a href="#quiz"><button class="btn alt">Langsung Quiz</button></a>
+        </div>
+        <div class="chips">
+            <span>📘 5 Materi</span>
+            <span>🧪 Simulasi</span>
+            <span>🏆 10 Soal Quiz</span>
+        </div>
+    </section>
+
+    <!-- ================= MATERI ================= -->
+    <!-- Tab & isi materi diisi oleh js/script.js (array MATERI) -->
+    <section id="materi" data-bg="1">
+        <div class="card">
+            <h2>📘 Materi Skala pada Peta dan Denah</h2>
+            <div class="tabs" id="tabs"></div>
+            <div id="pane"></div>
+        </div>
+    </section>
+
+    <!-- ================= ALAT / SIMULASI ================= -->
+    <section id="alat" data-bg="1">
+        <div class="grid">
+
+            <!-- Konversi satuan panjang -->
+            <div class="card">
+                <h3>🔁 Konversi Satuan Panjang</h3>
+                <p>Bagian tersulit menurut narasumber wawancara adalah mengubah satuan. Pakai tangga ini: turun satu anak tangga → <b>×10</b>, naik → <b>÷10</b>.</p>
+
+                <div class="svgbox">
+                    <svg viewBox="0 0 420 120" role="img" aria-label="Tangga satuan panjang dari km sampai mm">
+                        <g font-family="Nunito" font-weight="800" font-size="15" text-anchor="middle">
+                            <g fill="#e8590c"><rect x="5"   y="5"  width="50" height="34" rx="6"/></g>
+                            <g fill="#fab005"><rect x="62"  y="22" width="50" height="34" rx="6"/></g>
+                            <g fill="#74b816"><rect x="119" y="39" width="50" height="34" rx="6"/></g>
+                            <g fill="#12b886"><rect x="176" y="56" width="50" height="34" rx="6"/></g>
+                            <g fill="#1c7ed6"><rect x="233" y="73" width="50" height="34" rx="6"/></g>
+                            <g fill="#7048e8"><rect x="290" y="90" width="50" height="28" rx="6"/></g>
+                            <g fill="#fff">
+                                <text x="30"  y="28">km</text>
+                                <text x="87"  y="45">hm</text>
+                                <text x="144" y="62">dam</text>
+                                <text x="201" y="79">m</text>
+                                <text x="258" y="96">dm</text>
+                                <text x="315" y="109">cm</text>
+                            </g>
+                            <g fill="#1d2b3a"><text x="385" y="112">mm</text></g>
+                        </g>
+                    </svg>
+                </div>
+
+                <label>Nilai</label>
+                <input id="cv" type="number" value="2.5" step="any">
+                <label>Satuan</label>
+                <select id="cu">
+                    <option value="100000">km</option>
+                    <option value="100" selected>m</option>
+                    <option value="1">cm</option>
+                </select>
+                <div class="formula" id="cvo"></div>
+            </div>
+
+            <!-- Simulasi skala -->
+            <div class="card">
+                <h3>🧪 Simulasi Skala</h3>
+                <p>Geser jarak pada peta dan pilih skalanya.</p>
+
+                <label>Skala 1 : P</label>
+                <select id="sp">
+                    <option>1000</option>
+                    <option>5000</option>
+                    <option>50000</option>
+                    <option>100000</option>
+                    <option selected>200000</option>
+                    <option>500000</option>
+                    <option>1000000</option>
+                </select>
+
+                <label>Jarak pada peta: <b id="jpv">5</b> cm</label>
+                <input id="jp" type="range" min="1" max="20" step="0.5" value="5">
+
+                <div class="svgbox">
+                    <svg viewBox="0 0 400 70">
+                        <rect x="10" y="30" width="380" height="14" rx="7" fill="#dee2e6"/>
+                        <rect id="ruler" x="10" y="30" width="95" height="14" rx="7" fill="#e8590c"/>
+                        <text x="10" y="22" font-size="13" font-family="Nunito" font-weight="800" fill="#1d2b3a">Kota A</text>
+                        <text x="390" y="22" font-size="13" text-anchor="end" font-family="Nunito" font-weight="800" fill="#1d2b3a">20 cm (maks)</text>
+                        <text x="10" y="64" font-size="13" font-family="Nunito" fill="#1d2b3a">panjang merah = jarak pada peta</text>
+                    </svg>
+                </div>
+                <div class="formula" id="so"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ================= QUIZ ================= -->
+    <!-- Isi quiz dibuat oleh js/script.js (array SOAL) -->
+    <section id="quiz" data-bg="2">
+        <div class="card" id="qbox"></div>
+    </section>
+
+    <footer>Dibuat untuk projek Algoritma Pemrograman · Materi Matematika SMP</footer>
+
+</body>
+</html>
